@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增广告</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #cad2e0 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+         h1 {
+             font-family: 'Arial', sans-serif;
+             color: #333;
+             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+             animation: fadeIn 1s ease-in-out;
+         }
+
+        .form-container {
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+            text-align: left;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+
+        .return-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea,
+        select,
+        input[type="datetime-local"],
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        select {
+            width: 130px;
+        }
+
+        input[type="datetime-local"] {
+            width: 200px;
+        }
+
+        #username {
+            width: 200px;
+        }
+
+        input[type="button"] {
+            width: 80px;
+            padding: 8px;
+            margin: 0;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        #submit-btn-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        #submit-btn {
+            width: 80px;
+            padding: 8px;
+            margin: 0;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        #submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h1>新增广告</h1>
+    <div class="return-button">
+        <input type="button" value="返回" onclick="location.href='operating.html'">
+    </div>
+    <form>
+        <div class="form-group">
+            <label for="title">标题</label>
+            <input type="text" id="title" name="title" placeholder="请输入广告标题">
+        </div>
+        <div class="form-group">
+            <label for="content">内容</label>
+            <textarea id="content" name="content" rows="4" placeholder="请输入广告内容"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="tag">标签</label>
+            <select id="tag" name="tag">
+                <option value="" disabled selected>请选择标签</option>
+                <option value="标签1">标签1</option>
+                <option value="标签2">标签2</option>
+                <option value="标签3">标签3</option>
+                <!-- 根据实际需求添加更多选项 -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="username">广告主</label>
+            <input type="text" id="username" name="username" placeholder="请输入广告主名称">
+        </div>
+        <div class="form-group">
+            <label for="time">发布时间</label>
+            <input type="datetime-local" id="time" name="time">
+        </div>
+        <div class="form-group">
+            <label for="picture">图片/Logo路径</label>
+            <input type="text" id="picture" name="picture" placeholder="请输入广告路径">
+        </div>
+        <div class="form-group">
+            <div id="submit-btn-container">
+                <input type="button" value="提交" id="submit-btn" onclick="submitForm()">
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    function submitForm() {
+        // 获取表单元素
+        const form = document.querySelector('form');
+        const title = form.title.value.trim();
+        const content = form.content.value.trim();
+        const tag = form.tag.value.trim();
+        const username = form.username.value.trim();
+        const time = form.time.value.trim();
+        const picture = form.picture.value.trim();
+
+        // 检查是否所有字段都已填写
+        if (!title || !content || !tag || !username || !time || !picture) {
+            alert('广告信息不完整！'); // 弹出提示信息
+            return; // 阻止表单提交
+        }
+
+        // 如果所有字段都已填写，则继续执行提交操作
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        fetch('/api/operating/advertisements', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.text())
+            .then(message => {
+                alert(message); // 显示消息
+                if (message.includes("成功")) { // 假设成功消息包含“成功”字样
+                    window.location.href = 'operating.html'; // 跳转到operating.html
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
+</body>
+</html>

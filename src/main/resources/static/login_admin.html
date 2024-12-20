@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>管理员登录</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #cad2e0 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .admin-login-container {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    .admin-login-container h1 {
+      margin-bottom: 20px;
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .admin-login-container .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .admin-login-container .form-group label {
+      display: inline-block;
+      width: 100px;
+      text-align: right;
+      margin-right: 10px;
+    }
+
+    .admin-login-container .form-group input[type="password"] {
+      width: 150px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .admin-login-container button {
+      width: 80px;
+      padding: 8px;
+      margin: 5px;
+      border: none;
+      border-radius: 4px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    .admin-login-container button:hover {
+      background-color: #0056b3;
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 10px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+  <script>
+    async function login() {
+      const password = document.getElementById('password').value;
+      const response = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ password })
+      });
+
+      if (response.ok) {
+        window.location.href = 'operating_admin.html';
+      } else {
+        const error = await response.json();
+        document.querySelector('.error-message').textContent = error.message;
+      }
+    }
+  </script>
+</head>
+<body>
+<div class="admin-login-container">
+  <h1>管理员登录</h1>
+  <form onsubmit="event.preventDefault(); login();">
+    <div class="form-group">
+      <label for="password">密码:</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+    <div style="text-align: center;">
+      <button type="submit">登录</button>
+      <button type="button" onclick="location.href='login.html'">返回</button>
+    </div>
+    <div class="error-message"></div>
+  </form>
+</div>
+</body>
+</html>

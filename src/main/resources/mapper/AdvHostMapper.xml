@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.advertisement_system.mapper.AdvHostMapper">
+    <select id="findByAdvHostName" resultType="org.example.advertisement_system.entity.AdvHost">
+        SELECT * FROM advHost WHERE username = #{username}
+    </select>
+
+    <insert id="insertAdvHost" parameterType="org.example.advertisement_system.entity.AdvHost">
+        INSERT INTO advHost (username, password)
+        VALUES (#{username}, #{password})
+    </insert>
+</mapper>

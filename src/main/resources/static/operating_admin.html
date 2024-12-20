@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员操作</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #cad2e0 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .admin-container {
+            position: relative; /* 设置相对定位 */
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            overflow-y: auto; /* 添加垂直滚动条 */
+            max-height: 90vh; /* 设置最大高度为视口高度的90%，以确保有滚动效果 */
+        }
+
+        .admin-container h1, h2 {
+            margin-bottom: 20px;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .return-button {
+            position: absolute; /* 设置绝对定位 */
+            top: 10px; /* 距离顶部的距离 */
+            right: 5px; /* 距离右侧的距离 */
+        }
+
+        .admin-container button {
+            width: 80px;
+            padding: 8px;
+            margin: 0; /* 移除外边距 */
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .admin-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .advertisement-list {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .advertisement-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+
+        .advertisement-details {
+            margin-left: 20px;
+            text-align: left;
+        }
+
+        /* 隐藏模板 */
+        #advertisementTemplate {
+            display: none;
+        }
+
+        .delete-link {
+            font-size: 15px; /* 设置字体大小为你想要的值 */
+            color: red; /* 可选：设置文字颜色 */
+            text-decoration: none; /* 可选：去掉下划线 */
+            cursor: pointer; /* 可选：鼠标悬停时显示指针 */
+            margin-left: 15px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+<div class="admin-container">
+    <h1>欢迎管理员来到系统！</h1>
+    <h2>目前已投放的广告：</h2>
+    <div class="return-button">
+        <input type="button" value="返回登录" onclick="location.href='login.html'" class="admin-container button">
+    </div>
+    <div class="advertisement-list" id="advertisementList"></div>
+
+    <!-- 广告详情模板 -->
+    <template id="advertisementTemplate">
+        <div class="advertisement-item">
+            <h2>
+                <strong class="ad-title"></strong>
+                <a href="#" class="delete-link">删除</a>
+            </h2>
+            <div class="advertisement-details">
+                <p><strong>内容:</strong> <span class="ad-content"></span></p>
+                <p><strong>标签:</strong> <span class="ad-tag"></span></p>
+                <p><strong>广告主:</strong> <span class="ad-username"></span></p>
+                <p><strong>发布时间:</strong> <span class="ad-time"></span></p>
+                <p><strong>图片/logo:</strong> <span class="ad-picture"></span></p>
+            </div>
+        </div>
+    </template>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch('/api/advertisements_admin').then(response => response.json()).then(data => {
+            const template = document.getElementById('advertisementTemplate').content;
+            const listElement = document.getElementById('advertisementList');
+
+            data.forEach(advertisement => {
+                // 克隆模板
+                const itemElement = document.importNode(template, true);
+
+                // 填充数据
+                itemElement.querySelector('.ad-title').textContent = advertisement.title;
+                itemElement.querySelector('.ad-username').textContent = advertisement.username;
+                itemElement.querySelector('.ad-time').textContent = new Date(advertisement.time).toLocaleString();
+                itemElement.querySelector('.ad-content').textContent = advertisement.content;
+                itemElement.querySelector('.ad-tag').textContent = advertisement.tag;
+                itemElement.querySelector('.ad-picture').textContent = advertisement.picture;
+
+                // 获取删除链接并添加点击事件
+                const deleteLink = itemElement.querySelector('.delete-link');
+                deleteLink.addEventListener('click', function (event) {
+                    event.preventDefault(); // 阻止默认行为
+                    if (confirm(`确定要删除广告 "${advertisement.title}" 吗？`)) {
+                        fetch(`/api/advertisements_admin/by-title/${encodeURIComponent(advertisement.title)}`, {
+                            method: 'DELETE'
+                        })
+                            .then(() => {
+                                alert('广告已成功删除！');
+                                location.reload(); // 刷新页面
+                            })
+                            .catch(error => console.error('Error deleting advertisement:', error));
+                    }
+                });
+
+                // 添加到列表
+                listElement.appendChild(itemElement);
+            });
+        }).catch(error => console.error('Error fetching advertisements:', error));
+    });
+</script>
+</body>
+</html>
