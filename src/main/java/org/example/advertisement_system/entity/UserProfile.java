@@ -3,6 +3,7 @@ package org.example.advertisement_system.entity;
 /**
  * 用户标签及其权重的实体类。
  */
+
 public class UserProfile {
 
     /**
@@ -11,7 +12,7 @@ public class UserProfile {
     private int userId;
 
     /**
-     * 标签名。
+     * 用户访问网站内容的标签名。
      */
     private String tagName;
 
