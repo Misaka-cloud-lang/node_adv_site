@@ -2,7 +2,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://112.124.63.147:3306/advertisement?serverTimezone=GMT%2B8
-    username: root
+    username: advertisement
     password: Bdbg2181
 
 mybatis:
