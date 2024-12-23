@@ -20,17 +20,6 @@ public class NewsUserProfileServiceImpl implements NewsUserProfileService {
         newsUserProfileMapper.insertOrUpdateUserProfile(userProfile);
     }
 
-    @Override
-    public void insertOrUpdateUserProfileWithWeight2(int userId, String tagName) {
-        UserProfile userProfile = new UserProfile(userId, tagName, 2);
-        newsUserProfileMapper.insertOrUpdateUserProfileWithWeight2(userProfile);
-    }
-
-    @Override
-    public void insertOrUpdateUserProfileWithWeight3(int userId, String tagName) {
-        UserProfile userProfile = new UserProfile(userId, tagName, 3);
-        newsUserProfileMapper.insertOrUpdateUserProfileWithWeight3(userProfile);
-    }
 
     @Override
     public List<UserProfile> getUserProfilesByUserId(int userId) {

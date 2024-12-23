@@ -8,27 +8,11 @@ public interface NewsUserProfileService {
 
     /**
      * 插入或更新用户标签及其权重，权重加1。
-     *
+     *当用户浏览新闻时，权重+1
      * @param userId  用户ID
      * @param tagName 标签名
      */
     void insertOrUpdateUserProfile(int userId, String tagName);
-
-    /**
-     * 插入或更新用户标签及其权重，权重加2。
-     *
-     * @param userId  用户ID
-     * @param tagName 标签名
-     */
-    void insertOrUpdateUserProfileWithWeight2(int userId, String tagName);
-
-    /**
-     * 插入或更新用户标签及其权重，权重加3。
-     *
-     * @param userId  用户ID
-     * @param tagName 标签名
-     */
-    void insertOrUpdateUserProfileWithWeight3(int userId, String tagName);
 
     /**
      * 根据用户ID获取所有用户标签及其权重。

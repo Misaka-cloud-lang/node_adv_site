@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.advertisement_system.mapper.StoreUserProfileMapper">
+
+    <!-- 插入或更新用户标签及其权重，权重加1 -->
+    <insert id="insertOrUpdateStoreUserProfile" parameterType="org.example.advertisement_system.entity.UserProfile">
+        INSERT INTO store_user_profile (user_id, tag_name, tag_weight)
+        VALUES (#{userId}, #{tagName}, 1)
+            ON DUPLICATE KEY UPDATE tag_weight = tag_weight + 1
+    </insert>
+
+    <!-- 插入或更新用户标签及其权重，权重加2 -->
+    <insert id="insertOrUpdateStoreUserProfileWithWeight2" parameterType="org.example.advertisement_system.entity.UserProfile">
+        INSERT INTO store_user_profile (user_id, tag_name, tag_weight)
+        VALUES (#{userId}, #{tagName}, 2)
+            ON DUPLICATE KEY UPDATE tag_weight = tag_weight + 2
+    </insert>
+
+    <!-- 插入或更新用户标签及其权重，权重加3 -->
+    <insert id="insertOrUpdateStoreUserProfileWithWeight3" parameterType="org.example.advertisement_system.entity.UserProfile">
+        INSERT INTO store_user_profile (user_id, tag_name, tag_weight)
+        VALUES (#{userId}, #{tagName}, 3)
+            ON DUPLICATE KEY UPDATE tag_weight = tag_weight + 3
+    </insert>
+
+    <!-- 根据用户ID获取所有用户标签及其权重 -->
+    <select id="getStoreUserProfilesByUserId" resultType="org.example.advertisement_system.entity.UserProfile">
+        SELECT user_id AS userId, tag_name AS tagName, tag_weight AS tagWeight
+        FROM store_user_profile
+        WHERE user_id = #{userId}
+    </select>
+</mapper>
