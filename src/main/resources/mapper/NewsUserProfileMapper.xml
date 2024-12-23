@@ -12,19 +12,6 @@
             ON DUPLICATE KEY UPDATE tag_weight = tag_weight + 1
     </insert>
 
-    <!-- 插入或更新用户标签及其权重，权重加2 -->
-    <insert id="insertOrUpdateUserProfileWithWeight2" parameterType="org.example.advertisement_system.entity.UserProfile">
-        INSERT INTO news_user_profile (user_id, tag_name, tag_weight)
-        VALUES (#{userId}, #{tagName}, 2)
-            ON DUPLICATE KEY UPDATE tag_weight = tag_weight + 2
-    </insert>
-
-    <!-- 插入或更新用户标签及其权重，权重加3 -->
-    <insert id="insertOrUpdateUserProfileWithWeight3" parameterType="org.example.advertisement_system.entity.UserProfile">
-        INSERT INTO news_user_profile (user_id, tag_name, tag_weight)
-        VALUES (#{userId}, #{tagName}, 3)
-            ON DUPLICATE KEY UPDATE tag_weight = tag_weight + 3
-    </insert>
 
     <!-- 根据用户ID获取所有用户标签及其权重 -->
     <select id="getUserProfilesByUserId" resultType="org.example.advertisement_system.entity.UserProfile">
