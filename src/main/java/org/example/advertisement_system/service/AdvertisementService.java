@@ -8,4 +8,6 @@ public interface AdvertisementService {
     List<Advertisement> getAdvertisementsByUsername(String name);
     void deleteAdvertisement(String title);
     void addAdvertisement(Advertisement advertisement);
+    List<Advertisement> getAdvertisementsByTitle(String title);
+    List<Advertisement> getAdvertisementsByTag(String tag);
 }

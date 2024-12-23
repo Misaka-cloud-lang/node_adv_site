@@ -14,4 +14,8 @@ public interface AdvertisementMapper {
     void deleteByTitle(@Param("title") String title);
 
     void insert(Advertisement advertisement);
+
+    List<Advertisement> findByTitle(@Param("title") String title);
+
+    List<Advertisement> findByTag(@Param("tag") String tag);
 }

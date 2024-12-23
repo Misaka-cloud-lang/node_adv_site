@@ -29,4 +29,13 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         advertisementMapper.insert(advertisement);
     }
 
+    @Override
+    public List<Advertisement> getAdvertisementsByTitle(String title) {
+        return advertisementMapper.findByTitle(title);
+    }
+
+    @Override
+    public List<Advertisement> getAdvertisementsByTag(String tag) {
+        return advertisementMapper.findByTitle(tag);
+    }
 }

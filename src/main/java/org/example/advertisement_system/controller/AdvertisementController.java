@@ -31,4 +31,14 @@ public class AdvertisementController {
         advertisementService.addAdvertisement(advertisement);
         return ResponseEntity.ok("广告已成功添加");
     }
+
+    @GetMapping("/advertisements_title")
+    public List<Advertisement> getAdvertisementsByTitle(@RequestParam String title) {
+        return advertisementService.getAdvertisementsByTitle(title);
+    }
+
+    @GetMapping("/advertisements_tag")
+    public List<Advertisement> getAdvertisementsByTag(@RequestParam String tag) {
+        return advertisementService.getAdvertisementsByTitle(tag);
+    }
 }
