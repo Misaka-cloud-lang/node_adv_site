@@ -7,6 +7,16 @@ package org.example.advertisement_system.entity;
 public class UserProfile {
 
     /**
+     * 新闻网站用户标签数组。
+     */
+    public static final String[] NEWS_USER_TAGS = {"domestic", "international", "sports", "technology", "entertainment", "finance", "military","society", "stockMarket", "usStockMarket"};
+
+    /**
+     * 网店网站用户标签数组。
+     */
+    public static final String[] STORE_USER_TAGS = {"电子产品", "家居用品", "服装", "食品", "图书", "美妆", "运动器材", "汽车用品", "旅行用品"};
+
+    /**
      * 用户ID。
      */
     private int userId;

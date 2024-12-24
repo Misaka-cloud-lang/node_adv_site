@@ -39,10 +39,27 @@ public interface AdvertisementService {
     List<Advertisement> getAdvertisementsByTitle(String title);
 
     /**
-     * 根据单个标签获取广告列表。
-     *
+     * 根据单个标签和投放网站获取广告列表。
+     *网站：网店/新闻
      * @param tag 广告的单个标签
      * @return 广告列表
      */
+    List<Advertisement> getAdvertisementsByTag(String tag);
+
+    /**
+     * 根据单个标签和投放网站获取广告列表。
+     *网站：网店/新闻
+     * @param location 网站：网店/新闻
+     * @return 广告列表
+     */
+    List<Advertisement> getAdvertisementsByLocation( String location);
+    /**
+     * 根据单个标签和投放网站获取广告列表。
+     *网站：网店/新闻
+     * @param tag 广告的单个标签
+     * @param location 网站：网店/新闻
+     * @return 广告列表
+     */
     List<Advertisement> getAdvertisementsByTagAndLocation(String tag, String location);
+
 }

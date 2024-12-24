@@ -35,6 +35,15 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
+    public List<Advertisement> getAdvertisementsByTag(String tag) {
+        return advertisementMapper.findByTag(tag);
+    }
+
+    @Override
+    public List<Advertisement> getAdvertisementsByLocation( String location) {
+        return advertisementMapper.findByLocation(location);
+    }
+    @Override
     public List<Advertisement> getAdvertisementsByTagAndLocation(String tag, String location) {
         return advertisementMapper.findByTagAndLocation(tag, location);
     }

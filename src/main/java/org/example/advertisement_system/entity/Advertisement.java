@@ -10,6 +10,15 @@ public class Advertisement {
     private LocalDateTime time;
     private String picture;
     private String location;   //广告投放的位置：网店/新闻
+    /**
+     * 新闻网站广告分类标签数组。
+     */
+    public static final String[] NEWS_ADVERTISEMENT_CATEGORIES = {"电子产品","美妆","公益","金融","汽车"};
+
+    /**
+     * 网店网站广告分类标签数组。
+     */
+    public static final String[] STORE_ADVERTISEMENT_CATEGORIES = {"电子产品", "家居用品", "服装", "食品", "图书", "美妆", "运动器材", "汽车用品", "旅行用品"};
 
     // Getter and Setter for title
     public String getTitle() {
@@ -63,6 +72,19 @@ public class Advertisement {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    @Override
+    public String toString() {
+        return "Advertisement{" +
+                "title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", tag='" + tag + '\'' +
+                ", username='" + username + '\'' +
+                ", time=" + time +
+                ", picture='" + picture + '\'' +
+                ", location='" + location + '\'' +
+                '}';
     }
 
     // Getter and Setter for location
