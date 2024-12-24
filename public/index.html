@@ -1,16 +1,37 @@
-<!-- public/index.html -->
+<!-- public/news.html -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>广告展示页面</title>
+  <title>模拟新闻网站</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>欢迎来到广告展示页面</h1>
-  <div id="ad-container">
-    <!-- 广告内容将动态插入这里 -->
-  </div>
+  <header>
+    <h1>模拟新闻网站</h1>
+    <nav>
+      <a href="news.html">首页</a>
+      <a href="#">科技</a>
+      <a href="#">体育</a>
+      <a href="#">娱乐</a>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <h2>新闻标题</h2>
+      <p>这是一篇示例新闻的内容...</p>
+    </article>
+
+    <!-- 广告位使用 iframe -->
+    <div id="ad-container">
+      <iframe id="ad-iframe" src="" frameborder="0" scrolling="no" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 模拟新闻网站</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>

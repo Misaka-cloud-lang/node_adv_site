@@ -1,0 +1,92 @@
+<!-- public/ad.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>广告展示</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #fff;
+    }
+
+    .ad {
+      padding: 20px;
+    }
+
+    .ad-title {
+      font-size: 1.2em;
+      margin: 10px 0;
+      color: #555;
+    }
+
+    .ad-description {
+      font-size: 1em;
+      color: #777;
+      margin-bottom: 15px;
+    }
+
+    .ad-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .ad-button:hover {
+      background-color: #0056b3;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="ad">
+    <h2 class="ad-title">广告标题</h2>
+    <img src="https://via.placeholder.com/300x250" alt="广告图片">
+    <p class="ad-description">这是广告描述内容。</p>
+    <a href="https://example.com" target="_blank" class="ad-button">点击查看</a>
+  </div>
+
+  <script>
+    // 从父窗口获取广告数据
+    window.onload = () => {
+      try {
+        const adData = window.parent.adData;
+        if (adData) {
+          document.querySelector('.ad-title').textContent = adData.title;
+          document.querySelector('.ad-description').textContent = adData.description;
+          document.querySelector('img').src = adData.imageUrl;
+          document.querySelector('a.ad-button').href = adData.targetUrl;
+
+          // 通知父窗口广告已展示（曝光）
+          window.parent.postMessage({ type: 'adImpression', adId: adData.adId }, '*');
+        }
+      } catch (error) {
+        console.error('Error loading ad data:', error);
+      }
+    };
+
+    // 监听广告点击事件
+    document.querySelector('a.ad-button').addEventListener('click', () => {
+      try {
+        const adData = window.parent.adData;
+        if (adData) {
+          // 通知父窗口广告被点击
+          window.parent.postMessage({ type: 'adClick', adId: adData.adId }, '*');
+        }
+      } catch (error) {
+        console.error('Error tracking ad click:', error);
+      }
+    });
+  </script>
+</body>
+</html>
