@@ -130,12 +130,14 @@
             <textarea id="content" name="content" rows="4" placeholder="请输入广告内容"></textarea>
         </div>
         <div class="form-group">
+            <label>类型</label>
+            <input type="radio" id="ecommerce" name="location" onclick="updateTags()" checked> 网店
+            <input type="radio" id="advertising" name="location" onclick="updateTags()"> 新闻
+        </div>
+        <div class="form-group">
             <label for="tag">标签</label>
             <select id="tag" name="tag">
                 <option value="" disabled selected>请选择标签</option>
-                <option value="标签1">标签1</option>
-                <option value="标签2">标签2</option>
-                <option value="标签3">标签3</option>
                 <!-- 根据实际需求添加更多选项 -->
             </select>
         </div>
@@ -160,6 +162,33 @@
 </div>
 
 <script>
+    function updateTags() {
+        const tagSelect = document.getElementById('tag');
+        const ecommerceCheckbox = document.getElementById('ecommerce');
+        const advertisingCheckbox = document.getElementById('advertising');
+
+        // 清空现有选项
+        tagSelect.innerHTML = '<option value="" disabled selected>请选择标签</option>';
+
+        // 根据复选框状态添加选项
+        if (ecommerceCheckbox.checked) {
+            tagSelect.innerHTML += '<option value="标签1">标签1</option>';
+            tagSelect.innerHTML += '<option value="标签2">标签2</option>';
+            tagSelect.innerHTML += '<option value="标签3">标签3</option>';
+        }
+
+        if (advertisingCheckbox.checked) {
+            tagSelect.innerHTML += '<option value="标签4">标签4</option>';
+            tagSelect.innerHTML += '<option value="标签5">标签5</option>';
+            tagSelect.innerHTML += '<option value="标签6">标签6</option>';
+        }
+    }
+
+    // 确保页面加载时复选框状态正确
+    document.addEventListener('DOMContentLoaded', function() {
+        updateTags();
+    });
+
     function submitForm() {
         // 获取表单元素
         const form = document.querySelector('form');
@@ -169,9 +198,10 @@
         const username = form.username.value.trim();
         const time = form.time.value.trim();
         const picture = form.picture.value.trim();
+        const location = document.querySelector('input[name="type"]:checked').value;
 
         // 检查是否所有字段都已填写
-        if (!title || !content || !tag || !username || !time || !picture) {
+        if (!title || !content || !tag || !username || !time || !picture || !location) {
             alert('广告信息不完整！'); // 弹出提示信息
             return; // 阻止表单提交
         }
@@ -182,6 +212,8 @@
         formData.forEach((value, key) => {
             data[key] = value;
         });
+
+        data['location'] = location;
 
         fetch('/api/operating/advertisements', {
             method: 'POST',

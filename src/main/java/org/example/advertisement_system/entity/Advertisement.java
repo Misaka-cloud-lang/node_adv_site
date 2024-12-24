@@ -9,7 +9,7 @@ public class Advertisement {
     private String username;
     private LocalDateTime time;
     private String picture;
-    private String location;
+    private String location;  //广告投放的位置：网店/新闻
 
     // Getter and Setter for title
     public String getTitle() {
