@@ -1,7 +1,9 @@
+// app.js
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 
 const db = require('./config/db');     // Sequelize实例
 const routes = require('./routes');    // 路由汇总
@@ -11,6 +13,9 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
+
+// 提供 public 目录的静态文件
+app.use(express.static(path.join(__dirname, 'public')));
 
 // 测试数据库连接 & 同步模型
 db.sequelize.authenticate()
@@ -29,9 +34,9 @@ db.sequelize.authenticate()
 // 挂载路由
 app.use('/api', routes);
 
-// 测试用
+// 测试用根路由
 app.get('/', (req, res) => {
-  res.send('Node.js + MySQL Advertising System is running...');
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {

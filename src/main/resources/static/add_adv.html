@@ -138,7 +138,6 @@
             <label for="tag">标签</label>
             <select id="tag" name="tag">
                 <option value="" disabled selected>请选择标签</option>
-                <!-- 根据实际需求添加更多选项 -->
             </select>
         </div>
         <div class="form-group">
@@ -178,9 +177,11 @@
         }
 
         if (advertisingCheckbox.checked) {
-            tagSelect.innerHTML += '<option value="标签4">标签4</option>';
-            tagSelect.innerHTML += '<option value="标签5">标签5</option>';
-            tagSelect.innerHTML += '<option value="标签6">标签6</option>';
+            tagSelect.innerHTML += '<option value="电子产品">电子产品</option>';
+            tagSelect.innerHTML += '<option value="美妆">美妆</option>';
+            tagSelect.innerHTML += '<option value="公益">公益</option>';
+            tagSelect.innerHTML += '<option value="金融">金融</option>';
+            tagSelect.innerHTML += '<option value="汽车">汽车</option>';
         }
     }
 
@@ -204,8 +205,8 @@
 
         // 检查是否所有字段都已填写
         if (!title || !content || !tag || !username || !time || !picture || !location) {
-            alert('广告信息不完整！'); // 弹出提示信息
-            return; // 阻止表单提交
+            alert('广告信息不完整！');
+            return;
         }
 
         // 如果所有字段都已填写，则继续执行提交操作
