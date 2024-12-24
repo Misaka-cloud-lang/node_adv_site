@@ -9,6 +9,7 @@ public class Advertisement {
     private String username;
     private LocalDateTime time;
     private String picture;
+    private String location;
 
     // Getter and Setter for title
     public String getTitle() {
@@ -63,4 +64,8 @@ public class Advertisement {
     public void setPicture(String picture) {
         this.picture = picture;
     }
+
+    public String getLocation() {return location;}
+
+    public void setLocation(String location) {this.location = location;}
 }

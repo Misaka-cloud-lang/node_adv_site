@@ -44,5 +44,5 @@ public interface AdvertisementService {
      * @param tag 广告的单个标签
      * @return 广告列表
      */
-    List<Advertisement> getAdvertisementsByTag(String tag);
+    List<Advertisement> getAdvertisementsByTagAndLocation(String tag, String location);
 }

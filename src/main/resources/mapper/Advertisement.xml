@@ -12,8 +12,8 @@
 
     <!-- 插入新广告 -->
     <insert id="insert" parameterType="org.example.advertisement_system.entity.Advertisement">
-        INSERT INTO advertisement (title, content, tag, time, picture, username)
-        VALUES (#{title}, #{content}, #{tag}, #{time}, #{picture}, #{username})
+        INSERT INTO advertisement (title, content, tag, time, picture, username,location)
+        VALUES (#{title}, #{content}, #{tag}, #{time}, #{picture}, #{username}, #{location})
     </insert>
 
     <!-- 删除广告 -->
@@ -26,9 +26,9 @@
         SELECT * FROM advertisement WHERE title = #{title}
     </select>
 
-    <!-- 根据标签查询广告 -->
-    <select id="findByTag" resultType="org.example.advertisement_system.entity.Advertisement">
-        SELECT * FROM advertisement WHERE tag = #{tag}
+    <!-- 根据标签和位置查询广告 -->
+    <select id="findByTagAndLocation" resultType="org.example.advertisement_system.entity.Advertisement">
+        SELECT * FROM advertisement WHERE tag = #{tag} AND location = #{location}
     </select>
 
 </mapper>

@@ -38,7 +38,7 @@ public class AdvertisementController {
     }
 
     @GetMapping("/advertisements_tag")
-    public List<Advertisement> getAdvertisementsByTag(@RequestParam String tag) {
-        return advertisementService.getAdvertisementsByTitle(tag);
+    public List<Advertisement> getAdvertisementsByTagAndLocation(@RequestParam String tag, @RequestParam String location) {
+        return advertisementService.getAdvertisementsByTagAndLocation(tag, location);
     }
 }
