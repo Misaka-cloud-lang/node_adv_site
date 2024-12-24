@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://112.124.63.147:3306/advertisement?serverTimezone=GMT%2B8
-    username: advertisement
-    password: Bdbg2181
+    url: jdbc:mysql://localhost:3306/adv_system?serverTimezone=GMT%2B8
+    username: root
+    password: bdbg2181
 
 mybatis:
   configuration:

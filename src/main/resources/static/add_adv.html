@@ -131,8 +131,8 @@
         </div>
         <div class="form-group">
             <label>类型</label>
-            <input type="radio" id="ecommerce" name="location" onclick="updateTags()" checked> 网店
-            <input type="radio" id="advertising" name="location" onclick="updateTags()"> 新闻
+            <input type="radio" id="ecommerce" name="location" onclick="updateTags()" value="网店" checked> 网店
+            <input type="radio" id="advertising" name="location" onclick="updateTags()" value="新闻"> 新闻
         </div>
         <div class="form-group">
             <label for="tag">标签</label>
@@ -198,7 +198,9 @@
         const username = form.username.value.trim();
         const time = form.time.value.trim();
         const picture = form.picture.value.trim();
-        const location = document.querySelector('input[name="type"]:checked').value;
+        const location = document.querySelector('input[name="location"]:checked');
+
+        console.log({ title, content, tag, username, time, picture, location });
 
         // 检查是否所有字段都已填写
         if (!title || !content || !tag || !username || !time || !picture || !location) {
@@ -213,7 +215,9 @@
             data[key] = value;
         });
 
-        data['location'] = location;
+        data['location'] = location.value;
+
+        console.log('Submitting data:', data);
 
         fetch('/api/operating/advertisements', {
             method: 'POST',
@@ -229,8 +233,12 @@
                     window.location.href = 'operating.html'; // 跳转到operating.html
                 }
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => {
+                console.error('Error:', error);
+                alert('提交失败，请重试！');
+            });
     }
+
 </script>
 </body>
 </html>

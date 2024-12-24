@@ -109,6 +109,7 @@
             <div class="advertisement-details">
                 <p><strong>内容:</strong> <span class="ad-content"></span></p>
                 <p><strong>标签:</strong> <span class="ad-tag"></span></p>
+                <p><strong>投放位置:</strong> <span class="ad-location"></span></p>
                 <p><strong>广告主:</strong> <span class="ad-username"></span></p>
                 <p><strong>发布时间:</strong> <span class="ad-time"></span></p>
                 <p><strong>图片/logo:</strong> <span class="ad-picture"></span></p>
@@ -133,6 +134,7 @@
                 itemElement.querySelector('.ad-time').textContent = new Date(advertisement.time).toLocaleString();
                 itemElement.querySelector('.ad-content').textContent = advertisement.content;
                 itemElement.querySelector('.ad-tag').textContent = advertisement.tag;
+                itemElement.querySelector('.ad-location').textContent = advertisement.location;
                 itemElement.querySelector('.ad-picture').textContent = advertisement.picture;
 
                 // 获取删除链接并添加点击事件

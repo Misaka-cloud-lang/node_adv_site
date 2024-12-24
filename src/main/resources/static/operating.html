@@ -140,6 +140,7 @@
       <div class="advertisement-details">
         <p><strong>内容:</strong> <span class="ad-content"></span></p>
         <p><strong>标签:</strong> <span class="ad-tag"></span></p>
+        <p><strong>投放位置:</strong> <span class="ad-location"></span></p>
         <p><strong>发布时间:</strong> <span class="ad-time"></span></p>
         <p><strong>图片/logo:</strong> <span class="ad-picture"></span></p>
       </div>
@@ -170,6 +171,7 @@
                     adDiv.querySelector('.ad-title').textContent = advertisement.title;
                     adDiv.querySelector('.ad-content').textContent = advertisement.content;
                     adDiv.querySelector('.ad-tag').textContent = advertisement.tag;
+                    adDiv.querySelector('.ad-location').textContent = advertisement.location;
                     adDiv.querySelector('.ad-time').textContent = new Date(advertisement.time).toLocaleString();
                     adDiv.querySelector('.ad-picture').textContent = advertisement.picture;
 
