@@ -18,7 +18,7 @@ public class Advertisement {
     /**
      * 网店网站广告分类标签数组。
      */
-    public static final String[] STORE_ADVERTISEMENT_CATEGORIES = {"电子产品", "家居用品", "服装", "食品", "图书", "美妆", "运动器材", "汽车用品", "旅行用品"};
+    public static final String[] STORE_ADVERTISEMENT_CATEGORIES = {"电子产品", "家居用品", "服装", "食品", "图书", "美妆", "运动", "汽车","旅行"};
 
     // Getter and Setter for title
     public String getTitle() {

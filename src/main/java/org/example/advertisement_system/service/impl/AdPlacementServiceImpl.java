@@ -161,34 +161,76 @@ public class AdPlacementServiceImpl implements AdPlacementService {
      * @return 关联权重
      */
     private double calculateStoreAssociationWeight(String userTag, String category) {
-        // 这里可以根据实际业务逻辑来计算权重
-        // 示例中使用简单的规则
-        if (userTag.equals(category)) {
-            return 1.0;
-        } else if (userTag.equals("电子产品") && category.equals("科技")) {
-            return 0.8;
-        } else if (userTag.equals("科技") && category.equals("电子产品")) {
-            return 0.8;
-        } else if (userTag.equals("家居用品") && category.equals("家居用品")) {
-            return 1.0;
-        } else if (userTag.equals("服装") && category.equals("时尚")) {
-            return 0.7;
-        } else if (userTag.equals("食品") && category.equals("健康")) {
-            return 0.6;
-        } else if (userTag.equals("图书") && category.equals("教育")) {
-            return 0.7;
-        } else if (userTag.equals("美妆") && category.equals("美妆")) {
-            return 1.0;
-        } else if (userTag.equals("运动器材") && category.equals("运动")) {
-            return 0.8;
-        } else if (userTag.equals("汽车用品") && category.equals("汽车")) {
-            return 0.9;
-        } else if (userTag.equals("旅行用品") && category.equals("旅行")) {
-            return 0.8;
-        } else {
-            return 0.1;
+        // 根据实际业务逻辑来计算权重
+        switch (userTag) {
+            case "electronicProducts":
+                switch (category) {
+                    case "电子产品":
+                        return 1.0;
+                    default:
+                        return 0.1;
+                }
+            case "homeGoods":
+                switch (category) {
+                    case "家居用品":
+                        return 1.0;
+                    default:
+                        return 0.1;
+                }
+            case "clothing":
+                switch (category) {
+                    case "服装":
+                        return 1.0;
+                    default:
+                        return 0.1;
+                }
+            case "foodProducts":
+                switch (category) {
+                    case "食品":
+                        return 1.0;
+                    default:
+                        return 0.1;
+                }
+            case "books":
+                switch (category) {
+                    case "图书":
+                        return 1.0;
+                    default:
+                        return 0.1;
+                }
+            case "beautyProducts":
+                switch (category) {
+                    case "美妆":
+                        return 1.0;
+                    default:
+                        return 0.1;
+                }
+            case "sportsEquipment":
+                switch (category) {
+                    case "运动":
+                        return 1.0;
+                    default:
+                        return 0.1;
+                }
+            case "carAccessories":
+                switch (category) {
+                    case "汽车":
+                        return 1.0;
+                    default:
+                        return 0.1;
+                }
+            case "travelSupplies":
+                switch (category) {
+                    case "旅行":
+                        return 1.0;
+                    default:
+                        return 0.1;
+                }
+            default:
+                return 0.1;
         }
     }
+
 
     /**
      * 根据新闻网站用户标签和广告投放策略获取匹配的广告。
@@ -288,18 +330,39 @@ public class AdPlacementServiceImpl implements AdPlacementService {
                     Double associationValue = associationEntry.getValue();
 
                     categoryScores.put(category, categoryScores.getOrDefault(category, 0.0) + userTagWeight * associationValue);
+                    System.out.println("用户标签：" + userTag + "，广告分类：" + category + "，匹配得分：" + userTagWeight * associationValue);
                 }
             }
         }
+        // 输出每个广告分类的总得分
+        System.out.println("每个广告分类的总得分：");
+        for (Map.Entry<String, Double> entry : categoryScores.entrySet()) {
+            System.out.println("广告分类：" + entry.getKey() + "，总得分：" + entry.getValue());
+        }
+        // 如果 categoryScores 为空，说明没有匹配的标签
+        if (categoryScores.isEmpty()) {
+            System.out.println("没有匹配标签，进行随机抽取");
+            // 如果没有匹配的标签，对所有广告进行随机抽取
+            return getRandomAdvertisements(LOCATION_STORE);
+        }
 
-        // 选择匹配得分最高的广告分类
-        String bestCategory = categoryScores.entrySet().stream()
-                .max(Map.Entry.comparingByValue())
+        // 找到匹配得分最高的广告分类
+        double maxScore = categoryScores.values().stream().max(Double::compare).orElse(0.0);
+        List<String> bestCategories = categoryScores.entrySet().stream()
+                .filter(entry -> entry.getValue() == maxScore)
                 .map(Map.Entry::getKey)
-                .orElse("");
+                .collect(Collectors.toList());
+        //输出匹配的广告分类
+        System.out.println("匹配的广告分类：" );
+        for(String category : bestCategories){
+            System.out.println(category);
+        }
 
         // 从广告池中筛选具体广告
-        List<Advertisement> advertisements = advertisementService.getAdvertisementsByTagAndLocation(bestCategory, LOCATION_STORE);
+        List<Advertisement> advertisements = new ArrayList<>();
+        for (String category : bestCategories) {
+            advertisements.addAll(advertisementService.getAdvertisementsByTagAndLocation(category, LOCATION_STORE));
+        }
 
         // 随机投放广告
         Collections.shuffle(advertisements);

@@ -14,13 +14,12 @@ public class UserProfile {
     /**
      * 网店网站用户标签数组。
      */
-    public static final String[] STORE_USER_TAGS = {"电子产品", "家居用品", "服装", "食品", "图书", "美妆", "运动器材", "汽车用品", "旅行用品"};
+    public static final String[] STORE_USER_TAGS = {"electronicProducts", "homeGoods", "clothing", "foodProducts", "books", "beautyProducts", "sportsEquipment","carAccessories","travelSupplies"};
 
     /**
      * 用户ID。
      */
     private int userId;
-
     /**
      * 用户访问网站内容的标签名。
      */
