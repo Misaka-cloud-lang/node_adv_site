@@ -4,17 +4,8 @@ package org.example.advertisement_system.entity;
  * 用户标签及其权重的实体类。
  */
 
-public class UserProfile {
+public class UserProfile implements Tags{
 
-    /**
-     * 新闻网站用户标签数组。
-     */
-    public static final String[] NEWS_USER_TAGS = {"domestic", "international", "sports", "technology", "entertainment", "finance", "military","society", "stockMarket", "usStockMarket"};
-
-    /**
-     * 网店网站用户标签数组。
-     */
-    public static final String[] STORE_USER_TAGS = {"electronicProducts", "homeGoods", "clothing", "foodProducts", "books", "beautyProducts", "sportsEquipment","carAccessories","travelSupplies"};
 
     /**
      * 用户ID。

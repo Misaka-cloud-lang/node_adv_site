@@ -11,7 +11,8 @@
     <h2 th:text="${ad.title}"></h2>
     <img th:src="${ad.picture}" th:alt="${ad.tag}"/>
     <p id="content" th:text="${ad.content}"></p>
-    <p id="adv_host" th:text="powered BY +${ad.username}"></p>
+    <p>powered by:</p>
+    <p id="adv_host" th:text="${ad.username}"></p>
     <div id="details" style="display: none">
         <p id="post_time" th:text="${ad.time}"></p>
     </div>

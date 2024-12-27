@@ -5,6 +5,7 @@ import org.example.advertisement_system.entity.UserProfile;
 import org.example.advertisement_system.service.AdPlacementService;
 import org.example.advertisement_system.service.NewsUserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/ad")
+@Controller
+//@RequestMapping("/api/ad")
 public class AdRenderController {
     @Autowired
     private AdPlacementService adPlacementService;
