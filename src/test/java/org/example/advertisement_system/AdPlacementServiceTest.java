@@ -93,7 +93,7 @@ class AdPlacementServiceTest {
         // 获取用户ID为2的所有标签及其权重
         List<UserProfile> storeUserProfiles2 = storeUserProfileService.getStoreUserProfilesByUserId(2);
 
-        // 获取推荐广告
+        // 获取推荐广告advHost
         List<Advertisement> recommendedAds2 = adPlacementService.getStoreAdPlacements(2, storeUserProfiles2);
 
         // 输出推荐广告到控制台

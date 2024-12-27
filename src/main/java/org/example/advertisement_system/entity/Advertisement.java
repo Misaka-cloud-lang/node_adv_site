@@ -3,12 +3,33 @@ package org.example.advertisement_system.entity;
 import java.time.LocalDateTime;
 
 public class Advertisement {
+    /**
+     * 广告标题
+     */
     private String title;
+    /**
+     * 广告内容
+     */
     private String content;
+    /**
+     * 广告标签
+     */
     private String tag;
+    /**
+     * 广告发布者
+     */
     private String username;
+    /**
+     * 广告发布时间
+     */
     private LocalDateTime time;
+    /**
+     * 广告图片
+     */
     private String picture;
+    /**
+     * 广告投放的位置：网店/新闻
+     */
     private String location;   //广告投放的位置：网店/新闻
     /**
      * 新闻网站广告分类标签数组。

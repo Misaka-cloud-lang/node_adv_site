@@ -1,8 +1,6 @@
 package org.example.advertisement_system.controller;
 
 import org.example.advertisement_system.entity.UserProfile;
-import org.example.advertisement_system.mapper.EMallUserActionReceiveMapper;
-import org.example.advertisement_system.mapper.NewsSiteUserActionMapper;
 import org.example.advertisement_system.mapper.NewsUserProfileMapper;
 import org.example.advertisement_system.mapper.StoreUserProfileMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/receive")
 public class UserActionReceiveController {
-    @Autowired
-    private NewsSiteUserActionMapper newsSiteUserActionMapper;
-
-    @Autowired
-    private EMallUserActionReceiveMapper eMallUserActionReceiveMapper;
 
     @Autowired
     private NewsUserProfileMapper newsUserProfileMapper;
@@ -47,12 +40,12 @@ public class UserActionReceiveController {
         profile.setUserId(userId);
         profile.setTagName(tag);
         profile.setTagWeight(tag_value);
-//        newsSiteUserActionMapper.insertUserAction(profile);
         switch ((int)tag_value){
             case 1:
                 newsUserProfileMapper.insertOrUpdateUserProfile(profile);
                 break;
             default:
+                System.err.println("bad request");
                 return ResponseEntity.badRequest().body(profile);
         }
         System.out.println("receive news_site action");
@@ -85,6 +78,7 @@ public class UserActionReceiveController {
                 storeUserProfileMapper.insertOrUpdateStoreUserProfileWithWeight3(profile);
                 break;
             default:
+                System.out.println("bad request");
                 return ResponseEntity.badRequest().body(profile);
 
         }

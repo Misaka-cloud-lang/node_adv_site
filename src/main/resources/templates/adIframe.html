@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="main">
+    <!--/*@thymesVar id="ad" type="org.example.advertisement_system.entity.Advertisement"*/-->
+    <h2 th:text="${ad.title}"></h2>
+    <img th:src="${ad.picture}" th:alt="${ad.tag}"/>
+    <p id="content" th:text="${ad.content}"></p>
+    <p id="adv_host" th:text="powered BY +${ad.username}"></p>
+    <div id="details" style="display: none">
+        <p id="post_time" th:text="${ad.time}"></p>
+    </div>
+</div>
+
+</body>
+</html>
