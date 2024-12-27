@@ -24,3 +24,10 @@ logging:
   level:
     org:
       thymeleaf: DEBUG
+      example:
+        advertisement_system:
+          service: DEBUG
+          controller: DEBUG
+
+
+
