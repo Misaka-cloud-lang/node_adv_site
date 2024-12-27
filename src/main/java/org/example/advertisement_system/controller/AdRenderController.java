@@ -22,7 +22,7 @@ public class AdRenderController {
     @Autowired
     private NewsUserProfileService newsUserProfileService;
 
-    @GetMapping("/news")
+    @GetMapping("/api/ad/news")
     public String renderNewsAd(
             @RequestParam(name = "userId", defaultValue = "1") int userId,
             Model model
