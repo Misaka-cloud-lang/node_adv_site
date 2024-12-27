@@ -27,7 +27,8 @@ public class AdPlacementController {
      */
     @PostMapping("/place/news")
     public List<Advertisement> placeNewsAdvertisements(@RequestParam int userId, @RequestBody List<UserProfile> newsUserProfiles) {
-        return adPlacementService.getNewsAdPlacements(userId, newsUserProfiles);
+        List<Advertisement> newsAds= adPlacementService.getNewsAdPlacements(userId, newsUserProfiles);
+        return newsAds;
     }
 
     /**
