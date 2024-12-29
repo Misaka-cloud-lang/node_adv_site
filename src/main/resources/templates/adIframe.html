@@ -2,7 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Advertisement</title>
+    <style>
+        #main {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        #content {
+            margin-top: 10px;
+        }
+        #adv_host {
+            font-style: italic;
+            color: #777;
+        }
+        #details {
+            display: none;
+        }
+        #post_time {
+            color: #aaa;
+        }
+    </style>
 </head>
 <body>
 
@@ -13,7 +39,7 @@
     <p id="content" th:text="${ad.content}"></p>
     <p>powered by:</p>
     <p id="adv_host" th:text="${ad.username}"></p>
-    <div id="details" style="display: none">
+    <div id="details">
         <p id="post_time" th:text="${ad.time}"></p>
     </div>
 </div>
