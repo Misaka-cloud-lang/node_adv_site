@@ -28,6 +28,8 @@ logging:
         advertisement_system:
           service: DEBUG
           controller: DEBUG
+  file:
+    name: /var/log/advertisement_system.log
 
 
 
