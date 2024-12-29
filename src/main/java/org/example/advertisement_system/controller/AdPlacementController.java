@@ -32,11 +32,8 @@ public class AdPlacementController {
     }
 
     /**
-     * 根据网店网站用户标签和广告投放策略获取匹配的广告。
-     *
-     * @param userId            用户ID
-     * @param storeUserProfiles 商店用户标签及其权重列表
-     * @return 匹配的广告列表
+     * 根据网店网站用户标签和广告投放策略获取匹配的广告。<br/>
+     * 参见{@link #placeNewsAdvertisements(int, List)}
      */
     @PostMapping("/place/store")
     public List<Advertisement> placeStoreAdvertisements(@RequestParam int userId, @RequestBody List<UserProfile> storeUserProfiles) {
