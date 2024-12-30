@@ -4,16 +4,24 @@ import org.example.advertisement_system.entity.Advertisement;
 import org.example.advertisement_system.service.AdvertisementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * <strong>{@link RestController}只传数据，不能渲染网页</strong><br/>
+ * 广告控制器，处理广告请求。
+ */
 @RestController
 @RequestMapping("/api/operating")
 public class AdvertisementController {
 
     @Autowired
     private AdvertisementService advertisementService;
+
+
 
     @GetMapping("/advertisements")
     public List<Advertisement> getAdvertisementsByUsername(@RequestParam String username) {

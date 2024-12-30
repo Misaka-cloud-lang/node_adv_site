@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * 广告投放控制器，处理广告投放请求。
+ *
  */
 @RestController
 @RequestMapping("/api/advertisement")
@@ -19,7 +20,7 @@ public class AdPlacementController {
     private AdPlacementService adPlacementService;
 
     /**
-     * 根据新闻网站用户标签和广告投放策略获取匹配的广告。
+     * 根据新闻网站用户标签和广告投放策略获取匹配的广告，交付渲染。
      *
      * @param userId           用户ID
      * @param newsUserProfiles 新闻用户标签及其权重列表
@@ -27,7 +28,7 @@ public class AdPlacementController {
      */
     @PostMapping("/place/news")
     public List<Advertisement> placeNewsAdvertisements(@RequestParam int userId, @RequestBody List<UserProfile> newsUserProfiles) {
-        List<Advertisement> newsAds= adPlacementService.getNewsAdPlacements(userId, newsUserProfiles);
+        List<Advertisement> newsAds = adPlacementService.getNewsAdPlacements(userId, newsUserProfiles);
         return newsAds;
     }
 

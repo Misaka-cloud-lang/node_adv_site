@@ -1,33 +1,39 @@
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://112.124.63.147:3306/advertisement?serverTimezone=GMT%2B8
-    username: advertisement
-    password: Bdbg2181
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
-    enabled: true
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://112.124.63.147:3306/advertisement?serverTimezone=GMT%2B8
+        username: advertisement
+        password: Bdbg2181
+    thymeleaf:
+        prefix: classpath:/templates/
+        suffix: .html
+        enabled: true
+    web:
+        resources:
+            static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/
 
 mybatis:
-  configuration:
-    map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    configuration:
+        map-underscore-to-camel-case: true
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-  mapper-locations: classpath:mapper/*.xml
+    mapper-locations: classpath:mapper/*.xml
 
 
 server:
-  port: 8080
+    port: 8080
+    address: 0.0.0.0
+#    servlet:
+#        context-path: /advertisement_system
 
 logging:
-  level:
-    org:
-      thymeleaf: DEBUG
-      example:
-        advertisement_system:
-          service: DEBUG
-          controller: DEBUG
-
-
+    level:
+        org:
+            thymeleaf: INFO
+            example:
+                advertisement_system:
+                    service: INFO
+                    controller: INFO
+    file:
+        name: /var/log/advertisement_system.log
 

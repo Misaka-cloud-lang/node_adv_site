@@ -1,229 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>广告主操作</title>
-  <style>
-    body {
-      background: linear-gradient(135deg, #f5f7fa 0%, #cad2e0 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
+    <meta charset="UTF-8">
+    <title>广告主操作</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #cad2e0 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-    .admin-container {
-      position: relative; /* 设置相对定位 */
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: 80%;
-      max-width: 800px;
-      text-align: center;
-      overflow-y: auto; /* 添加垂直滚动条 */
-      max-height: 90vh; /* 设置最大高度为视口高度的90%，以确保有滚动效果 */
-    }
+        .admin-container {
+            position: relative; /* 设置相对定位 */
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            overflow-y: auto; /* 添加垂直滚动条 */
+            max-height: 90vh; /* 设置最大高度为视口高度的90%，以确保有滚动效果 */
+        }
 
-    .admin-container h1, h2 {
-      margin-bottom: 20px;
-      font-family: 'Arial', sans-serif;
-      color: #333;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 1s ease-in-out;
-    }
+        .admin-container h1, h2 {
+            margin-bottom: 20px;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
 
-    .return-button {
-      position: absolute;
-      top: 10px;
-      right: 5px;
-    }
+        .return-button {
+            position: absolute;
+            top: 10px;
+            right: 5px;
+        }
 
-    .admin-container button {
-      width: 80px;
-      padding: 8px;
-      margin: 0; /* 移除外边距 */
-      border: none;
-      border-radius: 4px;
-      background-color: #007bff;
-      color: white;
-      cursor: pointer;
-      text-align: center;
-    }
+        .admin-container button {
+            width: 80px;
+            padding: 8px;
+            margin: 0; /* 移除外边距 */
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+        }
 
-    .admin-container button:hover {
-      background-color: #0056b3;
-    }
+        .admin-container button:hover {
+            background-color: #0056b3;
+        }
 
-    .advertisement-list {
-      margin-top: 20px;
-      text-align: left;
-    }
+        .advertisement-list {
+            margin-top: 20px;
+            text-align: left;
+        }
 
-    .advertisement-item {
-      border-bottom: 1px solid #ccc;
-      padding: 10px 0;
-    }
+        .advertisement-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
 
-    .advertisement-details {
-      margin-left: 20px;
-      text-align: left;
-    }
+        .advertisement-details {
+            margin-left: 20px;
+            text-align: left;
+        }
 
-    /* 隐藏模板 */
-    #advertisementTemplate {
-      display: none;
-    }
+        /* 隐藏模板 */
+        #advertisementTemplate {
+            display: none;
+        }
 
-    .delete-link {
-      font-size: 15px;
-      color: red;
-      text-decoration: none;
-      cursor: pointer;
-      margin-left: 15px;
-    }
+        .delete-link {
+            font-size: 15px;
+            color: red;
+            text-decoration: none;
+            cursor: pointer;
+            margin-left: 15px;
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
 
-    .advertisement {
-      border-bottom: 1px solid #ccc;
-      padding: 10px 0;
-    }
+        .advertisement {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
 
-    .advertisement-details p {
-      margin: 5px 0;
-    }
+        .advertisement-details p {
+            margin: 5px 0;
+        }
 
-    #advertisements-container {
-      width: 100%;
-      text-align: left;
-    }
+        #advertisements-container {
+            width: 100%;
+            text-align: left;
+        }
 
-    .return-button input[type="button"] {
-      width: 80px;
-      padding: 8px;
-      margin: 0; /* 移除外边距 */
-      border: none;
-      border-radius: 4px;
-      background-color: #007bff;
-      color: white;
-      cursor: pointer;
-      text-align: center;
-    }
+        .return-button input[type="button"] {
+            width: 80px;
+            padding: 8px;
+            margin: 0; /* 移除外边距 */
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+        }
 
-    .return-button input[type="button"]:hover {
-      background-color: #0056b3;
-    }
-  </style>
+        .return-button input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 <div class="admin-container">
-  <h1 id="welcome-message"></h1>
-  <h2>目前您已投放的广告：</h2>
-  <div class="advertisement-list" id="advertisements-container"></div>
-  <div class="return-button">
-    <input type="button" value="新增广告" onclick="location.href='add_adv.html'">
-    <input type="button" value="返回登录" onclick="location.href='login.html'">
-  </div>
-
-  <!-- 预定义广告项模板 -->
-  <template id="advertisement-template">
-    <div class="advertisement-item">
-      <h2>
-        <strong class="ad-title"></strong>
-        <a href="#" class="delete-link">删除</a>
-      </h2>
-      <div class="advertisement-details">
-        <p><strong>内容:</strong> <span class="ad-content"></span></p>
-        <p><strong>标签:</strong> <span class="ad-tag"></span></p>
-        <p><strong>投放位置:</strong> <span class="ad-location"></span></p>
-        <p><strong>发布时间:</strong> <span class="ad-time"></span></p>
-        <p><strong>图片/logo:</strong> <span class="ad-picture"></span></p>
-      </div>
+    <h1 id="welcome-message"></h1>
+    <h2>目前您已投放的广告：</h2>
+    <div class="advertisement-list" id="advertisements-container"></div>
+    <div class="return-button">
+        <input type="button" value="新增广告"
+               onclick="location.href='addAdv?name='+sessionStorage.getItem('username')">
+        <input type="button" value="返回登录" onclick="location.href='login.html'">
     </div>
-  </template>
 
-  <script>
-    // 获取用户名并显示
-    const username = sessionStorage.getItem('username');
-    if (username) {
-      document.getElementById('welcome-message').textContent = `欢迎广告主： ${username}，来到系统！`;
+    <!-- 预定义广告项模板 -->
+    <template id="advertisement-template">
+        <div class="advertisement-item">
+            <h2>
+                <strong class="ad-title"></strong>
+                <a href="#" class="delete-link">删除</a>
+            </h2>
+            <div class="advertisement-details">
+                <p><strong>内容:</strong> <span class="ad-content"></span></p>
+                <p><strong>标签:</strong> <span class="ad-tag"></span></p>
+                <p><strong>投放位置:</strong> <span class="ad-location"></span></p>
+                <p><strong>发布时间:</strong> <span class="ad-time"></span></p>
+                <p><strong>图片/logo:</strong>
+                    <span class="ad-picture"></span>
+                    <img class="ad-pic-preview" src="" alt="广告图片" style="max-width: 100px;">
+                </p>
+            </div>
+        </div>
+    </template>
 
-      // 获取广告数据
-      fetch(`/api/operating/advertisements?username=${encodeURIComponent(username)}`)
-              .then(response => response.json())
-              .then(data => {
-                const advertisementsContainer = document.getElementById('advertisements-container');
-                const template = document.getElementById('advertisement-template').content;
+    <script>
+        // 获取用户名并显示
+        const username = sessionStorage.getItem('username');
+        if (username) {
+            document.getElementById('welcome-message').textContent = `欢迎广告主： ${username}，来到系统！`;
 
-                if (data.length === 0) {
-                  // 如果没有广告，显示提示信息
-                  advertisementsContainer.innerHTML = '<p>您当前还未投放广告！</p>';
-                } else {
-                  // 否则，渲染广告列表
-                  data.forEach(advertisement => {
-                    const adDiv = document.importNode(template, true);
+            // 获取广告数据
+            fetch(`/api/operating/advertisements?username=${encodeURIComponent(username)}`)
+                .then(response => response.json())
+                .then(data => {
+                    const advertisementsContainer = document.getElementById('advertisements-container');
+                    const template = document.getElementById('advertisement-template').content;
 
-                    adDiv.querySelector('.ad-title').textContent = advertisement.title;
-                    adDiv.querySelector('.ad-content').textContent = advertisement.content;
-                    adDiv.querySelector('.ad-tag').textContent = advertisement.tag;
-                    adDiv.querySelector('.ad-location').textContent = advertisement.location;
-                    adDiv.querySelector('.ad-time').textContent = new Date(advertisement.time).toLocaleString();
-                    adDiv.querySelector('.ad-picture').textContent = advertisement.picture;
+                    if (data.length === 0) {
+                        // 如果没有广告，显示提示信息
+                        advertisementsContainer.innerHTML = '<p>您当前还未投放广告！</p>';
+                    } else {
+                        // 否则，渲染广告列表
+                        data.forEach(advertisement => {
+                            const adDiv = document.importNode(template, true);
 
-                    advertisementsContainer.appendChild(adDiv);
-                  });
+                            adDiv.querySelector('.ad-title').textContent = advertisement.title;
+                            adDiv.querySelector('.ad-content').textContent = advertisement.content;
+                            adDiv.querySelector('.ad-tag').textContent = advertisement.tag;
+                            adDiv.querySelector('.ad-location').textContent = advertisement.location;
+                            adDiv.querySelector('.ad-time').textContent = new Date(advertisement.time).toLocaleString();
+                            adDiv.querySelector('.ad-picture').textContent = advertisement.picture;
+                            adDiv.querySelector('.ad-pic-preview').src = "/"+advertisement.picture;
 
-                  // 绑定删除事件
-                  document.querySelectorAll('.delete-link').forEach(link => {
-                    link.addEventListener('click', function(event) {
-                      event.preventDefault(); // 阻止默认行为
+                            advertisementsContainer.appendChild(adDiv);
+                        });
 
-                      // 弹出确认对话框
-                      const confirmed = confirm('确定要删除此广告吗？');
+                        // 绑定删除事件
+                        document.querySelectorAll('.delete-link').forEach(link => {
+                            link.addEventListener('click', function (event) {
+                                event.preventDefault(); // 阻止默认行为
 
-                      if (confirmed) {
-                        // 用户确认删除，调用删除广告函数
-                        deleteAdvertisement(event, this);
-                      }
-                    });
-                  });
-                }
-              })
-              .catch(error => console.error('Error fetching advertisements:', error));
-    } else {
-      alert('未登录，请先登录！');
-      location.href = 'login.html';
-    }
+                                // 弹出确认对话框
+                                const confirmed = confirm('确定要删除此广告吗？');
 
-    // 删除广告的函数
-    function deleteAdvertisement(event, element) {
-      event.preventDefault(); // 再次阻止默认行为，以防万一
+                                if (confirmed) {
+                                    // 用户确认删除，调用删除广告函数
+                                    deleteAdvertisement(event, this);
+                                }
+                            });
+                        });
+                    }
+                })
+                .catch(error => console.error('Error fetching advertisements:', error));
+        } else {
+            alert('未登录，请先登录！');
+            location.href = 'login.html';
+        }
 
-      // 获取广告标题
-      const adItem = element.parentElement;
-      const adTitleElement = adItem.querySelector('.ad-title');
-      const title = adTitleElement.textContent.trim();
+        // 删除广告的函数
+        function deleteAdvertisement(event, element) {
+            event.preventDefault(); // 再次阻止默认行为，以防万一
 
-      // 发送 DELETE 请求
-      fetch(`/api/operating/by-title/${encodeURIComponent(title)}`, {
-        method: 'DELETE'
-      })
-              .then(response => {
-                if (response.ok) {
-                  // 如果删除成功，则从页面上移除广告项
-                  window.location.reload();
-                } else {
-                  throw new Error('Failed to delete advertisement');
-                }
-              })
-              .catch(error => console.error('Error deleting advertisement:', error));
-    }
-  </script>
+            // 获取广告标题
+            const adItem = element.parentElement;
+            const adTitleElement = adItem.querySelector('.ad-title');
+            const title = adTitleElement.textContent.trim();
+
+            // 发送 DELETE 请求
+            fetch(`/api/operating/by-title/${encodeURIComponent(title)}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // 如果删除成功，则从页面上移除广告项
+                        window.location.reload();
+                    } else {
+                        throw new Error('Failed to delete advertisement');
+                    }
+                })
+                .catch(error => console.error('Error deleting advertisement:', error));
+        }
+    </script>
 </div>
 </body>
 </html>
