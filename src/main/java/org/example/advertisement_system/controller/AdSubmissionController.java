@@ -12,7 +12,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @RestController
 @RequestMapping("/api/manage")
@@ -38,7 +37,11 @@ public class AdSubmissionController {
             }
             String pictureFilename = picture.getOriginalFilename();
             Path filePath = uploadPath.resolve(pictureFilename);
-            Files.copy(picture.getInputStream(), filePath);
+            if(!Files.exists(filePath)) {
+                Files.createFile(filePath);
+                Files.copy(picture.getInputStream(), filePath);
+            }
+
 
             // Create the advertisement object
             Advertisement advertisement = new Advertisement();

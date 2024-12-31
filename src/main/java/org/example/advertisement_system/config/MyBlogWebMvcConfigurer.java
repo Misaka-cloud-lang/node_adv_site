@@ -1,4 +1,4 @@
-package org.example.advertisement_system;
+package org.example.advertisement_system.config;
 
 import org.example.advertisement_system.intercepter.LogInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
