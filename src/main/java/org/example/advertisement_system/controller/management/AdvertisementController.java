@@ -39,7 +39,7 @@ public class AdvertisementController {
     }
 
     @GetMapping("/advertisements_title")
-    public List<Advertisement> getAdvertisementsByTitle(@RequestParam String title) {
+    public Advertisement getAdvertisementsByTitle(@RequestParam String title) {
         return advertisementService.getAdvertisementsByTitle(title);
     }
 

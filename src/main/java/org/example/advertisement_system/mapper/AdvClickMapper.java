@@ -8,4 +8,6 @@ public interface AdvClickMapper {
 
     void insertAdvClick(AdvClick advClick);
 
+    int getClickCountByTitle(String title);
+
 }

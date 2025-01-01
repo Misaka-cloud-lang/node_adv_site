@@ -37,5 +37,9 @@
     <select id="findByTagAndLocation" resultType="org.example.advertisement_system.entity.Advertisement">
         SELECT * FROM advertisement WHERE tag = #{tag} AND location = #{location}
     </select>
-
+    <update id="updateAdvertisementPerformance">
+        UPDATE advertisement
+        SET click_rate = #{clickRate},
+        WHERE title = #{title}
+    </update>
 </mapper>

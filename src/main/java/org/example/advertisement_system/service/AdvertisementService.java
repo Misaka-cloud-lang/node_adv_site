@@ -36,7 +36,7 @@ public interface AdvertisementService {
      * @param title 广告标题
      * @return 广告列表
      */
-    List<Advertisement> getAdvertisementsByTitle(String title);
+    Advertisement getAdvertisementsByTitle(String title);
 
     /**
      * 根据单个标签和投放网站获取广告列表。
@@ -61,5 +61,20 @@ public interface AdvertisementService {
      * @return 广告列表
      */
     List<Advertisement> getAdvertisementsByTagAndLocation(String tag, String location);
+
+    /**
+     * 根据广告标题获取点击率。
+     *
+     * @param title 广告标题
+     * @return 点击率
+     */
+    double getClickRate(String title);
+    /**
+     * 设置广告的点击率。
+     *
+     * @param title     广告标题
+     * @param clickRate 点击率
+     */
+    void setClickRate(String title, double clickRate);
 
 }

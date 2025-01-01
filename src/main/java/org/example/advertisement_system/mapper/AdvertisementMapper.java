@@ -15,9 +15,10 @@ public interface AdvertisementMapper {
 
     void insert(Advertisement advertisement);
 
-    List<Advertisement> findByTitle(@Param("title") String title);
+    Advertisement findByTitle(@Param("title") String title);
 
     List<Advertisement> findByTag(@Param("tag") String tag);
     List<Advertisement> findByLocation( @Param("location") String location);
     List<Advertisement> findByTagAndLocation(@Param("tag") String tag, @Param("location") String location);
+    void updateAdvertisementPerformance(Advertisement advertisement);
 }

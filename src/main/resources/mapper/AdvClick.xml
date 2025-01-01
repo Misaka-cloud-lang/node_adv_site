@@ -7,4 +7,8 @@
     <insert id="insertAdvClick" parameterType="org.example.advertisement_system.entity.AdvClick">
         INSERT INTO adv_click (place_time, adv_title, place_site) VALUE (#{placeTime}, #{advTitle}, #{placeSite})
     </insert>
+
+    <select id="getClickCountByTitle" resultType="int">
+        SELECT COUNT(*) FROM adv_click WHERE adv_title = #{title}
+    </select>
 </mapper>

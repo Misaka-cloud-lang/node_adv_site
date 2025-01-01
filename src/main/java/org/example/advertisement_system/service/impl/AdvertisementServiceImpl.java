@@ -1,6 +1,8 @@
 package org.example.advertisement_system.service.impl;
 
 import org.example.advertisement_system.entity.Advertisement;
+import org.example.advertisement_system.mapper.AdvClickMapper;
+import org.example.advertisement_system.mapper.AdvPlaceMapper;
 import org.example.advertisement_system.mapper.AdvertisementMapper;
 import org.example.advertisement_system.service.AdvertisementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,11 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Autowired
     private AdvertisementMapper advertisementMapper;
+    @Autowired
+    private AdvClickMapper advClickMapper;
 
+    @Autowired
+    private AdvPlaceMapper advPlaceMapper;
     @Override
     public List<Advertisement> getAdvertisementsByUsername(String username) {
         return advertisementMapper.findByUsername(username);
@@ -30,7 +36,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
-    public List<Advertisement> getAdvertisementsByTitle(String title) {
+    public Advertisement getAdvertisementsByTitle(String title) {
         return advertisementMapper.findByTitle(title);
     }
 
@@ -47,5 +53,19 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     public List<Advertisement> getAdvertisementsByTagAndLocation(String tag, String location) {
         return advertisementMapper.findByTagAndLocation(tag, location);
     }
+    @Override
+    public double getClickRate(String title) {
+        int clickCount = advClickMapper.getClickCountByTitle(title);
+        int placeCount = advPlaceMapper.getPlaceCountByTitle(title);
+        return (double) clickCount / placeCount;
+    }
 
+    @Override
+    public void setClickRate(String title, double clickRate) {
+        Advertisement advertisement = advertisementMapper.findByTitle(title);
+        if (advertisement != null) {
+            advertisement.setClickRate(clickRate);
+            advertisementMapper.updateAdvertisementPerformance(advertisement);
+        }
+    }
 }

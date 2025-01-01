@@ -7,5 +7,5 @@ import org.example.advertisement_system.entity.AdvPlace;
 public interface AdvPlaceMapper {
 
     void insertAdvPlace(AdvPlace advPlace);
-
+    int getPlaceCountByTitle(String title);
 }

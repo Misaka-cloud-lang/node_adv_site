@@ -7,4 +7,8 @@
     <insert id="insertAdvPlace" parameterType="org.example.advertisement_system.entity.AdvPlace">
         INSERT INTO adv_place (place_time, adv_title, place_site) VALUE (#{placeTime}, #{advTitle}, #{placeSite})
     </insert>
+
+    <select id="getPlaceCountByTitle" resultType="int">
+        SELECT COUNT(*) FROM adv_place WHERE adv_title = #{title}
+    </select>
 </mapper>
