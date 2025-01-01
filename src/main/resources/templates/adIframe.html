@@ -35,7 +35,7 @@
 <div id="main">
     <!--/*@thymesVar id="ad" type="org.example.advertisement_system.entity.Advertisement"*/-->
     <h2 th:text="${ad.title}"></h2>
-    <img id="picture" th:src="${ad.picture}" th:alt="${ad.tag}"/>
+    <img id="picture" th:src="'http://112.124.63.147:8080/'+${ad.picture}" th:alt="${ad.tag}"/>
     <p id="content" th:text="${ad.content}"></p>
     <p>powered by:</p>
     <p id="adv_host" th:text="${ad.username}"></p>

@@ -1,7 +1,9 @@
 package org.example.advertisement_system.controller;
 
+import org.example.advertisement_system.entity.AdvPlace;
 import org.example.advertisement_system.entity.Advertisement;
 import org.example.advertisement_system.entity.UserProfile;
+import org.example.advertisement_system.mapper.AdvPlaceMapper;
 import org.example.advertisement_system.service.AdPlacementService;
 import org.example.advertisement_system.service.NewsUserProfileService;
 import org.example.advertisement_system.service.StoreUserProfileService;
@@ -39,6 +41,7 @@ public class AdPlacementController {
     ) {
         List<UserProfile> profiles = storeUserProfileService.getStoreUserProfilesByUserId(userId);
         List<Advertisement> newsAds = adPlacementService.getNewsAdPlacements(userId, profiles);
+
         return newsAds;
     }
 
