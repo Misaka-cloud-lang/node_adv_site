@@ -1,9 +1,8 @@
 package org.example.advertisement_system.controller;
 
-import org.example.advertisement_system.entity.AdvPlace;
 import org.example.advertisement_system.entity.Advertisement;
 import org.example.advertisement_system.entity.UserProfile;
-import org.example.advertisement_system.mapper.AdvPlaceMapper;
+import org.example.advertisement_system.service.AdPlaceRecorderService;
 import org.example.advertisement_system.service.AdPlacementService;
 import org.example.advertisement_system.service.NewsUserProfileService;
 import org.example.advertisement_system.service.StoreUserProfileService;
@@ -28,6 +27,8 @@ public class AdPlacementController {
     private StoreUserProfileService storeUserProfileService;
     @Autowired
     private NewsUserProfileService newsUserProfileService;
+    @Autowired
+    private AdPlaceRecorderService advPlaceRecorderService;
 
     /**
      * 根据新闻网站用户标签和广告投放策略获取匹配的广告，交付渲染。
@@ -41,7 +42,7 @@ public class AdPlacementController {
     ) {
         List<UserProfile> profiles = storeUserProfileService.getStoreUserProfilesByUserId(userId);
         List<Advertisement> newsAds = adPlacementService.getNewsAdPlacements(userId, profiles);
-
+        advPlaceRecorderService.addPlaceRecords(newsAds, EffectCodingsForSite.NEWS);
         return newsAds;
     }
 
@@ -55,6 +56,8 @@ public class AdPlacementController {
     public List<Advertisement> placeStoreAdvertisements(@RequestParam int userId) {
         List<UserProfile> profiles =
                 newsUserProfileService.getUserProfilesByUserId(userId);
-        return adPlacementService.getStoreAdPlacements(userId, profiles);
+        List<Advertisement> advertisements= adPlacementService.getStoreAdPlacements(userId, profiles);
+        advPlaceRecorderService.addPlaceRecords(advertisements, EffectCodingsForSite.STORE);
+        return advertisements;
     }
 }
