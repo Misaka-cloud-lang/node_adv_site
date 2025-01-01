@@ -123,7 +123,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        fetch('/api/advertisements_admin').then(response => response.json()).then(data => {
+        fetch('api/advertisements_admin').then(response => response.json()).then(data => {
             const template = document.getElementById('advertisementTemplate').content;
             const listElement = document.getElementById('advertisementList');
 
@@ -138,7 +138,7 @@
                 itemElement.querySelector('.ad-content').textContent = advertisement.content;
                 itemElement.querySelector('.ad-tag').textContent = advertisement.tag;
                 itemElement.querySelector('.ad-location').textContent = advertisement.location;
-                itemElement.querySelector('.ad-picture').textContent = advertisement.picture;
+                itemElement.querySelector('.ad-pic-preview').src = "/"+advertisement.picture;
 
                 // 获取删除链接并添加点击事件
                 const deleteLink = itemElement.querySelector('.delete-link');
