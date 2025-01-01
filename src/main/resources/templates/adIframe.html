@@ -8,23 +8,29 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+
         h2 {
             color: #333;
         }
+
         img {
             max-width: 100%;
             height: auto;
         }
+
         #content {
             margin-top: 10px;
         }
+
         #adv_host {
             font-style: italic;
             color: #777;
         }
+
         #details {
             display: none;
         }
+
         #post_time {
             color: #aaa;
         }
@@ -32,9 +38,9 @@
 </head>
 <body>
 
-<div id="main">
+<div id="main" onclick="reportClick(this)">
     <!--/*@thymesVar id="ad" type="org.example.advertisement_system.entity.Advertisement"*/-->
-    <h2 th:text="${ad.title}"></h2>
+    <h2 th:text="${ad.title}" id="title"></h2>
     <img id="picture" th:src="'http://112.124.63.147:8080/'+${ad.picture}" th:alt="${ad.tag}"/>
     <p id="content" th:text="${ad.content}"></p>
     <p>powered by:</p>
@@ -43,7 +49,24 @@
         <p id="post_time" th:text="${ad.time}"></p>
     </div>
 </div>
-<script>
+<script type="application/javascript">
+    function reportClick(element) {
+        let title = element.getElementById("title").innerText;
+        let addr = "112.124.63.147"
+        let url = "http://" + addr + ":8080/api/effect/store?title=" + title;
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                console.log('Reported successfully');
+            } else {
+                console.error('Failed to report');
+            }
+        });
+    }
 
 </script>
 
