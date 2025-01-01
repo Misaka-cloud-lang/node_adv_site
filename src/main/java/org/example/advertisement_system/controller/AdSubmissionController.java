@@ -73,6 +73,7 @@ public class AdSubmissionController {
     public ResponseEntity<Resource> getPicture(@PathVariable String filename) {
         try {
             Path filePath = Paths.get("uploads").resolve(filename).normalize();
+            System.out.println(filePath);
             Resource resource = new UrlResource(filePath.toUri());
             if (resource.exists()) {
                 return ResponseEntity.ok()

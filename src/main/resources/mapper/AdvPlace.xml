@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.advertisement_system.mapper.AdvPlaceMapper">
+    <insert id="insertAdvPlace" parameterType="org.example.advertisement_system.entity.AdvPlace">
+        INSERT INTO adv_place (place_time, adv_title, place_site) VALUE (#{place_time}, #{adv_title}, #{place_site})
+    </insert>
+</mapper>
