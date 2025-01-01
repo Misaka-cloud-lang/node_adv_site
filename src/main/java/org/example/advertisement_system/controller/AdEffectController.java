@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping("/api/effect")
 public class AdEffectController implements EffectCodingsForSite{
@@ -24,6 +26,7 @@ public class AdEffectController implements EffectCodingsForSite{
         AdvClick advClick = new AdvClick();
         advClick.setAdvTitle(title);
         advClick.setPlaceSite(NEWS);
+        advClick.setPlaceTime(LocalDateTime.now());
         advClickMapper.insertAdvClick(advClick);
         return ResponseEntity.ok(advClick);
     }
@@ -36,6 +39,7 @@ public class AdEffectController implements EffectCodingsForSite{
         AdvClick advClick = new AdvClick();
         advClick.setAdvTitle(title);
         advClick.setPlaceSite(STORE);
+        advClick.setPlaceTime(LocalDateTime.now());
         advClickMapper.insertAdvClick(advClick);
         return ResponseEntity.ok(advClick);
     }

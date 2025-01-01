@@ -5,6 +5,6 @@
 
 <mapper namespace="org.example.advertisement_system.mapper.AdvPlaceMapper">
     <insert id="insertAdvPlace" parameterType="org.example.advertisement_system.entity.AdvPlace">
-        INSERT INTO adv_place (place_time, adv_title, place_site) VALUE (#{place_time}, #{adv_title}, #{place_site})
+        INSERT INTO adv_place (place_time, adv_title, place_site) VALUE (#{placeTime}, #{advTitle}, #{placeSite})
     </insert>
 </mapper>

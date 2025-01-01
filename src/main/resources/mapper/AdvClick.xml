@@ -5,6 +5,6 @@
 
 <mapper namespace="org.example.advertisement_system.mapper.AdvClickMapper">
     <insert id="insertAdvClick" parameterType="org.example.advertisement_system.entity.AdvClick">
-        INSERT INTO adv_click (place_time, adv_title, place_site) VALUE (#{place_time}, #{adv_title}, #{place_site})
+        INSERT INTO adv_click (place_time, adv_title, place_site) VALUE (#{placeTime}, #{advTitle}, #{placeSite})
     </insert>
 </mapper>
