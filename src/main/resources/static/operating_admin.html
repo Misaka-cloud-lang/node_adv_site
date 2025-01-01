@@ -95,7 +95,7 @@
     <h1>欢迎管理员来到系统！</h1>
     <h2>目前已投放的广告：</h2>
     <div class="return-button">
-        <input type="button" value="返回登录" onclick="location.href='addAdv'" class="admin-container button">
+        <input type="button" value="返回登录" onclick="location.href='login.html'" class="admin-container button">
     </div>
     <div class="advertisement-list" id="advertisementList"></div>
 
@@ -112,7 +112,10 @@
                 <p><strong>投放位置:</strong> <span class="ad-location"></span></p>
                 <p><strong>广告主:</strong> <span class="ad-username"></span></p>
                 <p><strong>发布时间:</strong> <span class="ad-time"></span></p>
-                <p><strong>图片/logo:</strong> <span class="ad-time"></span></p>
+                <p><strong>图片/logo:</strong>
+                    <span class="ad-picture"></span>
+                    <img class="ad-pic-preview" src="" alt="广告图片" style="max-width: 100px;">
+                </p>
             </div>
         </div>
     </template>

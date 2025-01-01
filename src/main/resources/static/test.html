@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>广告详情</title>
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        window.onload = function() {
+            const title = getQueryParam('title');
+            if (title) {
+                document.querySelector('h1').textContent = `广告标题: ${decodeURIComponent(title)}`;
+            } else {
+                document.querySelector('h1').textContent = '未找到广告标题';
+            }
+        };
+    </script>
+</head>
+<body>
+<h1></h1>
+</body>
+</html>
