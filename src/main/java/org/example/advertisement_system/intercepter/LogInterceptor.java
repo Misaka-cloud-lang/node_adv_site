@@ -35,10 +35,10 @@ public class LogInterceptor implements HandlerInterceptor {
 
         long startTime = (Long) request.getAttribute("startTime");
         long endTime = System.currentTimeMillis();
-        System.err.println("Request URL: " + request.getRequestURL());
-        System.err.println("End Time: " + endTime);
+        System.err.println(" * Request URL: " + request.getRequestURL());
+        System.err.println(" * End Time: " + endTime);
 
-        System.err.println("Time Taken: " + (endTime - startTime));
+        System.err.println(" * Time Taken: " + (endTime - startTime));
         System.err.println("********************");
         System.err.println(">>>>");
     }
