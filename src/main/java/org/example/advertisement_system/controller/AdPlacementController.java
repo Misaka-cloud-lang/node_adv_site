@@ -2,10 +2,7 @@ package org.example.advertisement_system.controller;
 
 import org.example.advertisement_system.entity.Advertisement;
 import org.example.advertisement_system.entity.UserProfile;
-import org.example.advertisement_system.service.AdPlaceRecorderService;
-import org.example.advertisement_system.service.AdPlacementService;
-import org.example.advertisement_system.service.NewsUserProfileService;
-import org.example.advertisement_system.service.StoreUserProfileService;
+import org.example.advertisement_system.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +26,8 @@ public class AdPlacementController {
     private NewsUserProfileService newsUserProfileService;
     @Autowired
     private AdPlaceRecorderService advPlaceRecorderService;
+    @Autowired
+    private AdvertisementService advertisementService;
 
     /**
      * 根据新闻网站用户标签和广告投放策略获取匹配的广告，交付渲染。
@@ -43,6 +42,7 @@ public class AdPlacementController {
         List<UserProfile> profiles = storeUserProfileService.getStoreUserProfilesByUserId(userId);
         List<Advertisement> newsAds = adPlacementService.getNewsAdPlacements(userId, profiles);
         advPlaceRecorderService.addPlaceRecords(newsAds, EffectCodingsForSite.NEWS);
+        newsAds.forEach(news -> advertisementService.updateClickRate(news.getTitle()));
         return newsAds;
     }
 
@@ -56,8 +56,9 @@ public class AdPlacementController {
     public List<Advertisement> placeStoreAdvertisements(@RequestParam int userId) {
         List<UserProfile> profiles =
                 newsUserProfileService.getUserProfilesByUserId(userId);
-        List<Advertisement> advertisements= adPlacementService.getStoreAdPlacements(userId, profiles);
+        List<Advertisement> advertisements = adPlacementService.getStoreAdPlacements(userId, profiles);
         advPlaceRecorderService.addPlaceRecords(advertisements, EffectCodingsForSite.STORE);
+        advertisements.forEach(ad -> advertisementService.updateClickRate(ad.getTitle()));
         return advertisements;
     }
 }

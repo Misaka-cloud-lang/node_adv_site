@@ -77,4 +77,9 @@ public interface AdvertisementService {
      */
     void setClickRate(String title, double clickRate);
 
+    default void updateClickRate(String title) {
+        double clickRate = getClickRate(title);
+        setClickRate(title, clickRate);
+    }
+
 }

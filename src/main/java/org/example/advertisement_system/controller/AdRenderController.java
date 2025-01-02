@@ -3,6 +3,7 @@ package org.example.advertisement_system.controller;
 import org.example.advertisement_system.entity.Advertisement;
 import org.example.advertisement_system.entity.UserProfile;
 import org.example.advertisement_system.service.AdPlacementService;
+import org.example.advertisement_system.service.AdvertisementService;
 import org.example.advertisement_system.service.NewsUserProfileService;
 import org.example.advertisement_system.service.StoreUserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class AdRenderController {
     private NewsUserProfileService newsUserProfileService;
     @Autowired
     private StoreUserProfileService storeUserProfileService;
+    @Autowired
+    private AdvertisementService advertisementService;
 
     @GetMapping("/news")
     public String renderNewsAd(
@@ -40,6 +43,7 @@ public class AdRenderController {
         int adId = adLocation % newsAds.size();
         System.err.println("选择第" + adId + "个广告");
         Advertisement advertisement = newsAds.get(adId);
+        advertisementService.updateClickRate(advertisement.getTitle());
         model.addAttribute("ad", advertisement);
         return "adIframe";
     }
