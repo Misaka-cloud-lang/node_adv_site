@@ -39,7 +39,7 @@ public class AdPlacementController {
     public List<Advertisement> placeNewsAdvertisements(
             @RequestParam int userId
     ) {
-        List<UserProfile> profiles = storeUserProfileService.getStoreUserProfilesByUserId(userId);
+        List<UserProfile> profiles = newsUserProfileService.getUserProfilesByUserId(userId);
         List<Advertisement> newsAds = adPlacementService.getNewsAdPlacements(userId, profiles);
         advPlaceRecorderService.addPlaceRecords(newsAds, EffectCodingsForSite.NEWS);
         newsAds.forEach(news -> advertisementService.updateClickRate(news.getTitle()));
@@ -55,7 +55,7 @@ public class AdPlacementController {
     @PostMapping("/place/store")
     public List<Advertisement> placeStoreAdvertisements(@RequestParam int userId) {
         List<UserProfile> profiles =
-                newsUserProfileService.getUserProfilesByUserId(userId);
+                storeUserProfileService.getStoreUserProfilesByUserId(userId);
         List<Advertisement> advertisements = adPlacementService.getStoreAdPlacements(userId, profiles);
         advPlaceRecorderService.addPlaceRecords(advertisements, EffectCodingsForSite.STORE);
         advertisements.forEach(ad -> advertisementService.updateClickRate(ad.getTitle()));
