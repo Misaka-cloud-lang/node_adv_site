@@ -8,6 +8,8 @@ import org.example.advertisement_system.service.AdPlacementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class AdvPlaceRecorderServiceImpl implements AdPlaceRecorderService {
     @Autowired
@@ -17,6 +19,7 @@ public class AdvPlaceRecorderServiceImpl implements AdPlaceRecorderService {
         AdvPlace advPlace = new AdvPlace();
         advPlace.setAdvTitle(adv.getTitle());
         advPlace.setPlaceSite(site);
+        advPlace.setPlaceTime(LocalDateTime.now());
         advPlaceMapper.insertAdvPlace(advPlace);
     }
 }
