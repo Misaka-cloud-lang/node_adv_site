@@ -57,7 +57,10 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     public double getClickRate(String title) {
         int clickCount = advClickMapper.getClickCountByTitle(title);
         int placeCount = advPlaceMapper.getPlaceCountByTitle(title);
-        return (double) clickCount / placeCount;
+        if (placeCount == 0) {
+            return 0;
+        }
+        return ((double) clickCount) / placeCount;
     }
 
     @Override

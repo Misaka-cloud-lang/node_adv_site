@@ -30,14 +30,14 @@ server:
 logging:
     level:
         org:
-            thymeleaf: INFO
+            thymeleaf: warn
             example:
                 advertisement_system:
-                    service: INFO
-                    controller: INFO
-                    dao: INFO
-            mybatis: INFO
+                    service: warn
+                    controller: warn
+                    dao: warn
+            mybatis: warn
         root: info
     file:
-        name: /var/log/advertisement_system.log
+        name: /root/log/advertisement_system.log
 

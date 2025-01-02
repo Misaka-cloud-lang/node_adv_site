@@ -38,8 +38,6 @@
         SELECT * FROM advertisement WHERE tag = #{tag} AND location = #{location}
     </select>
     <update id="updateAdvertisementPerformance">
-        UPDATE advertisement
-        SET click_rate = #{clickRate},
-        WHERE title = #{title}
+        UPDATE advertisement SET clickRate = #{clickRate} WHERE title = #{title}
     </update>
 </mapper>
