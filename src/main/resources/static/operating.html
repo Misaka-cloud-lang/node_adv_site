@@ -147,6 +147,7 @@
                 <p><strong>标签:</strong> <span class="ad-tag"></span></p>
                 <p><strong>投放位置:</strong> <span class="ad-location"></span></p>
                 <p><strong>发布时间:</strong> <span class="ad-time"></span></p>
+                <p><strong>点击率:</strong> <span class="ad-click-rate"></span></p>
                 <p><strong>图片/logo:</strong>
                     <span class="ad-picture"></span>
                     <img class="ad-pic-preview" src="" alt="广告图片" style="max-width: 100px;">
@@ -183,6 +184,7 @@
                             adDiv.querySelector('.ad-time').textContent = new Date(advertisement.time).toLocaleString();
                             adDiv.querySelector('.ad-picture').textContent = advertisement.picture;
                             adDiv.querySelector('.ad-pic-preview').src = "/"+advertisement.picture;
+                            adDiv.querySelector('.ad-click-rate').textContent = `${advertisement.clickRate.toFixed(2)}%`;
 
                             advertisementsContainer.appendChild(adDiv);
                         });
